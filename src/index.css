@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&family=Lato:wght@300;400;700&display=swap');
+
+:root {
+  /* OSRS-inspired color palette */
+  --primary-color: #c8a75a;
+  --primary-dark: #8d6e41;
+  --primary-light: #e6b66b;
+  --background-color: #141210;
+  --background-secondary: #352b1b;
+  --chat-box: #433226;
+  --text-color: #e8d4a9;
+  --text-secondary: #a69065;
+  
+  /* Enhanced OSRS theme variables */
+  --runescape-brown: #4b3621;
+  --runescape-brown-light: #5a432b;
+  --runescape-brown-dark: #32250f;
+  --runescape-black: #211c11;
+  --runescape-gold: #e6b932;
+  --runescape-gold-light: #ffd65e;
+  --runescape-dark-gold: #9c7a3c;
+  --runescape-border: #634e2b;
+  --runescape-chat-bg: #0d0b07;
+  --runescape-stone: #5a5246;
+  --runescape-stone-dark: #3a3530;
+  --runescape-parchment: #d8cba7;
+  --runescape-inventory-bg: #3e3529;
+  --runescape-green: #2e8b57;
+  --runescape-green-light: #3fa66e;
+  --runescape-green-dark: #1d5c3a;
+  --runescape-red: #cb3e3e;
+  --runescape-red-light: #e35454;
+  --runescape-red-dark: #9e2f2f;
+  --runescape-blue: #3273a8;
+  --runescape-blue-light: #4d90c9;
+  --runescape-blue-dark: #225782;
+  
+  /* Button colors */
+  --runescape-button-top: #5a432b;
+  --runescape-button-bottom: #32250f;
+  --runescape-button-hover-top: #634e2b;
+  --runescape-button-hover-bottom: #3a2914;
+  --runescape-text: #e8d4a9;
+  
+  /* Type colors */
+  --afk-color: #4CAF50;
+  --gathering-color: #2196F3;
+  --boss-color: #F44336;
+  
+  /* OSRS font stacks */
+  font-family: 'Lato', 'RuneScape UF', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: dark;
+  color: var(--text-color);
+  background-color: var(--background-color);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  cursor: url('/osrs-cursor.svg') 16 16, auto;
+}
+
+a, button {
+  cursor: url('/osrs-cursor.svg') 16 16, pointer;
+}
+
+a {
+  font-weight: 500;
+  color: var(--primary-color);
+  text-decoration: inherit;
+}
+
+a:hover {
+  color: var(--primary-light);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Cinzel', serif;
+  line-height: 1.2;
+}
+
+button {
+  border-radius: 5px;
+  border: 1px solid var(--primary-dark);
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 600;
+  font-family: inherit;
+  background-color: var(--primary-color);
+  color: #111;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+
+button:hover:not(:disabled) {
+  background-color: var(--primary-light);
+  border-color: var(--primary-color);
+}
+
+button:focus,
+button:focus-visible {
+  outline: 3px solid rgba(212, 162, 87, 0.5);
+}
+
+/* OSRS-style scrollbar */
+::-webkit-scrollbar {
+  width: 14px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--runescape-brown);
+  border-left: 1px solid var(--runescape-black);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to right, var(--runescape-dark-gold) 0%, var(--runescape-gold) 50%, var(--runescape-dark-gold) 100%);
+  border: 2px solid var(--runescape-black);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to right, var(--runescape-gold) 0%, var(--runescape-gold) 70%, var(--runescape-dark-gold) 100%);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}

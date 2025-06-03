@@ -1,0 +1,275 @@
+.add-chore-container {
+  margin-bottom: 20px;
+  max-width: 800px;
+  width: 100%;
+}
+
+.toggle-form-button {
+  width: 100%;
+  background: linear-gradient(to bottom, var(--runescape-gold-light), var(--runescape-gold));
+  color: white;
+  border: 2px solid var(--runescape-black);
+  border-radius: 0;
+  padding: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.7);
+  font-family: 'Cinzel', serif;
+  letter-spacing: 1px;
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  box-shadow: 
+    inset 0 0 10px rgba(0, 0, 0, 0.5),
+    0 4px 6px rgba(0, 0, 0, 0.5);
+}
+
+/* Add OSRS-style button highlight effect */
+.toggle-form-button:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.2), transparent);
+  pointer-events: none;
+}
+
+.toggle-form-button:hover {
+  background: linear-gradient(to bottom, var(--runescape-gold), var(--runescape-dark-gold));
+  transform: translateY(-2px);
+  box-shadow: 
+    inset 0 0 10px rgba(0, 0, 0, 0.5),
+    0 6px 10px rgba(0, 0, 0, 0.5);
+}
+
+.toggle-form-button:active {
+  transform: translateY(0);
+  box-shadow: 
+    inset 0 0 10px rgba(0, 0, 0, 0.7),
+    0 2px 3px rgba(0, 0, 0, 0.5);
+}
+
+.add-chore-form {
+  background-color: var(--runescape-inventory-bg);
+  border: 2px solid var(--runescape-gold);
+  border-radius: 0;
+  padding: 20px;
+  margin-top: 15px;
+  position: relative;
+  box-shadow: 
+    0 4px 10px rgba(0, 0, 0, 0.3),
+    inset 0 0 20px rgba(0, 0, 0, 0.4);
+  
+  /* Add styled corners */
+  background-image: 
+    linear-gradient(135deg, var(--runescape-gold) 0%, transparent 10px),
+    linear-gradient(-135deg, var(--runescape-gold) 0%, transparent 10px),
+    linear-gradient(-45deg, var(--runescape-gold) 0%, transparent 10px),
+    linear-gradient(45deg, var(--runescape-gold) 0%, transparent 10px);
+  background-position: top left, top right, bottom right, bottom left;
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+}
+
+/* Add texture overlay */
+.add-chore-form:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAO0lEQVQYlWNkYGBgqK6u/s9AJGBiIFLAasOGDf9xKQjCJgmyBKsJMOtAJgINwoYZSTEBHQPNh9gKGBgYAIE0AxnXj6KCAAAAAElFTkSuQmCC');
+  background-repeat: repeat;
+  opacity: 0.05;
+  pointer-events: none;
+}
+
+.form-header {
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--runescape-border);
+}
+
+.form-header h2 {
+  color: var(--runescape-gold);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  margin: 0;
+  font-size: 1.4em;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--runescape-gold-light);
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+  letter-spacing: 0.5px;
+}
+
+.form-group input[type="text"],
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid var(--runescape-border);
+  border-radius: 0;
+  background-color: var(--runescape-chat-bg);
+  color: #ffffff;
+  font-family: inherit;
+  box-shadow: 
+    inset 0 0 10px rgba(0, 0, 0, 0.5),
+    0 2px 4px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s;
+}
+
+.form-group input[type="text"]:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--runescape-gold);
+  outline: none;
+  box-shadow: 
+    inset 0 0 10px rgba(0, 0, 0, 0.5),
+    0 0 5px var(--runescape-gold);
+}
+
+.form-group textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.form-group select {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='%23e6b932' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 20px;
+  appearance: none;
+  padding-right: 36px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  margin-top: 8px;
+}
+
+.checkbox-label input {
+  margin-right: 6px;
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+  accent-color: var(--runescape-gold);
+}
+
+.custom-type-toggle {
+  margin-top: 5px;
+  font-size: 0.9em;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.cancel-button,
+.submit-button {
+  padding: 10px 20px;
+  border-radius: 0;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);
+  position: relative;
+  overflow: hidden;
+  border: 2px solid var(--runescape-black);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Add highlight effect */
+.cancel-button:before,
+.submit-button:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.2), transparent);
+  pointer-events: none;
+}
+
+.cancel-button {
+  background: linear-gradient(to bottom, #786450, #5a4835);
+  color: #ffffff;
+  border: 2px solid #3a2a1c;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.cancel-button:hover {
+  background: linear-gradient(to bottom, #8a745f, #695344);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+}
+
+.cancel-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(to bottom, #695344, #483726);
+}
+
+.submit-button {
+  background: linear-gradient(to bottom, var(--runescape-gold-light), var(--runescape-gold));
+  color: #ffffff;
+  border: 2px solid var(--runescape-black);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  position: relative;
+}
+
+.submit-button:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAO0lEQVQYlWNkYGBgqK6u/s9AJGBiIFLAasOGDf9xKQjCJgmyBKsJMOtAJgINwoYZSTEBHQPNh9gKGBgYAIE0AxnXj6KCAAAAAElFTkSuQmCC');
+  background-repeat: repeat;
+  opacity: 0.05;
+  pointer-events: none;
+}
+
+.submit-button:hover {
+  background: linear-gradient(to bottom, var(--runescape-gold), var(--runescape-dark-gold));
+  transform: translateY(-2px);
+  box-shadow: 
+    0 6px 10px rgba(0, 0, 0, 0.3),
+    0 0 15px rgba(230, 185, 50, 0.3);
+}
+
+.submit-button:active {
+  transform: translateY(0);
+  box-shadow: 
+    0 2px 3px rgba(0, 0, 0, 0.3),
+    0 0 5px rgba(230, 185, 50, 0.3);
+}
+
+.submit-button:disabled {
+  background: linear-gradient(to bottom, #a8a8a8, #888888);
+  color: #555;
+  border-color: #888888;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}

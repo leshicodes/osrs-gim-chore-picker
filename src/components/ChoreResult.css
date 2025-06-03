@@ -1,0 +1,374 @@
+.chore-result {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.chore-result.visible {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.result-card {
+  background: linear-gradient(135deg, var(--runescape-brown-dark) 0%, var(--runescape-brown) 50%, var(--runescape-stone-dark) 100%);
+  border: 4px solid var(--runescape-gold);
+  border-radius: 0;
+  padding: 2rem;
+  max-width: 90%;
+  width: 500px;
+  box-shadow: 
+    0 0 0 2px var(--runescape-black),
+    0 0 0 6px var(--runescape-dark-gold),
+    0 0 30px rgba(0, 0, 0, 0.7);
+  text-align: center;
+  color: var(--text-color);
+  animation: cardAppear 0.5s ease-out forwards;
+  position: relative;
+}
+
+/* Add OSRS-style stone texture */
+.result-card:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAUVBMVEWFhYWDg4N3d3dtbW17e3t1dXWBgYGHh4d5eXlzc3OLi4ubm5uVlZWPj4+NjY19fX2JiYl/f39ra2uRkZGZmZlpaWmXl5dvb29xcXGTk5NnZ2c4H2hWAAAAG3RSTlNAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEAvEOwtAAAFVklEQVR4XpWWB67c2BUFb3g557T/hRo9/WUMZHlgr4Bg8Z4qQgQJlHI4A8SzFVrapvmTF9O7dmYRFZ60YiBhJRCgh1FYhiLAmdvX0CzTOpNE77ME0Zty/nWWzchDtiqrmQDeuv3powQ5ta2eN0FY0InkqDD73lT9c9lEzwUNqgFHs9VQce3TVClFCQrSTfOiYkVJQBmpbq2L6iZavPnAPcoU0dSw0SUTqz/GtrGuXfbyyBniKykOWQWGqwwMA7QiYAxi+IlPdqo+hYHnUt5ZPfnsHJyNiDtnpJyayNBkF6cWoYGAMY92U2hXHF/C1M8uP/ZtYdiuj26UdAdQQSXQErwSOMzt/XWRWAz5GuSBIkwG1H3FabJ2OsUOUhGC6tK4EMtJO0ttC6IBD3kM0ve0tJwMdSfjZo+EEISaeTr9P3wYrGjXqyC1krcKdhMpxEnt5JetoulscpyzhXN5FRpuPHvbeQaKxFAEB6EN+cYN6xD7RYGpXpNndMmZgM5Dcs3YSNFDHUo2LGfZuukSWyUYirJAdYbF3MfqEKmjM+I2EfhA94iG3L7uKrR+GdWD73ydlIB+6hgref1QTlmgmbM3/LeX5GI1Ux1RWpgxpLuZ2+I+IjzZ8wqE4nilvQdkUdfhzI5QDWy+kw5Wgg2pGpeEVeCCA7b85BO3F9DzxB3cdqvBzWcmzbyMiqhzuYqtHRVG2y4x+KOlnyqla8AoWWpuBoYRxzXrfKuILl6SfiWCbjxoZJUaCBj1CjH7GIaDbc9kqBY3W/Rgjda1iqQcOJu2WW+76pZC9QG7M00dffe9hNnseupFL53r8F7YHSwJWUKP2q+k7RdsxyOB11n0xtOvnW4irMMFNV4H0uqwS5ExsmP9AxbDTc9JwgneAT5vTiUSm1E7BSflSt3bfa1tv8Di3R8n3Af7MNWzs49hmauE2wP+ttrq+AsWpFG2awvsuOqbipWHgtuvuaAE+A1Z/7gC9hesnr+7wqCwG8c5yAg3AL1fm8T9AZtp/bbJGwl1pNrE7RuOX7PeMRUERVaPpEs+yqeoSmuOlokqw49pgomjLeh7icHNlG19yjs6XXOMedYm5xH2YxpV2tc0Ro2jJfxC50ApuxGob7lMsxfTbeUv07TyYxpeLucEH1gNd4IKH2LAg5TdVhlCafZvpskfncCfx8pOhJzd76bJWeYFnFciwcYfubRc12Ip/ppIhA1/mSZ/RxjFDrJC5xifFjJpY2Xl5zXdguFqYyTR1zSp1Y9p+tktDYYSNflcxI0iyO4TPBdlRcpeqjK/piF5bklq77VSEaA+z8qmJTFzIWiitbnzR794USKBUaT0NTEsVjZqLaFVqJoPN9ODG70IPbfBHKK+/q/AWR0tJzYHRULOa4MP+W/HfGadZUbfw177G7j/OGbIs8TahLyynl4X4RinF793Oz+BU0saXtUHrVBFT/DnA3ctNPoGbs4hRIjTok8i+algT1lTHi4SxFvONKNrgQFAq2/gFnWMXgwffgYMJpiKYkmW3tTg3ZQ9Jq+f8XN+A5eeUKHWvJWJ2sgJ1Sop+wwhqFVijqWaJhwtD8MNlSBeWNNWTa5Z5kPZw5+LbVT99wqTdx29lMUH4OIG/D86ruKEauBjvH5xy6um/Sfj7ei6UUVk4AIl3MyD4MSSTOFgSwsH/QJWaQ5as7ZcmgBZkzjjU1UrQ74ci1gWBCSGHtuV1H2mhSnO3Wp/3fEV5a+4wz//6qy8JxjZsmxxy5+4w9CDNJY09T072iKG0EnOS0arEYgXqYnXcYHwjTtUNAcMelOd4xpkoqiTYICWFq0JSiPfPDQdnt+4/wuqcXY47QILbgAAAABJRU5ErkJggg==');
+  opacity: 0.04;
+  pointer-events: none;
+}
+
+.result-card:before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  border: 1px solid var(--runescape-gold);
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* Add OSRS-style corner decorations */
+.result-card-corners {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+.result-card-corners::before,
+.result-card-corners::after,
+.result-card-corners span:before,
+.result-card-corners span:after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background-color: var(--runescape-gold);
+  z-index: 3;
+}
+
+.result-card-corners::before {
+  top: -2px;
+  left: -2px;
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+
+.result-card-corners::after {
+  top: -2px;
+  right: -2px;
+  clip-path: polygon(0 0, 100% 0, 100% 100%);
+}
+
+.result-card-corners span:before {
+  bottom: -2px;
+  left: -2px;
+  clip-path: polygon(0 0, 0 100%, 100% 100%);
+}
+
+.result-card-corners span:after {
+  bottom: -2px;
+  right: -2px;
+  clip-path: polygon(100% 0, 0 100%, 100% 100%);
+}
+
+.result-corner {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3E%3Cpath d='M0 0 L30 0 L30 2 L2 2 L2 30 L0 30 Z' fill='%23e6b932'/%3E%3C/svg%3E");
+}
+
+.top-left {
+  top: 0;
+  left: 0;
+}
+
+.top-right {
+  top: 0;
+  right: 0;
+  transform: rotate(90deg);
+}
+
+.bottom-right {
+  bottom: 0;
+  right: 0;
+  transform: rotate(180deg);
+}
+
+.bottom-left {
+  bottom: 0;
+  left: 0;
+  transform: rotate(270deg);
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--runescape-dark-gold) 0%, var(--runescape-black) 100%);
+  border: 2px solid var(--runescape-gold);
+  color: var(--text-color);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.close-button:hover {
+  background: linear-gradient(135deg, var(--runescape-gold) 0%, var(--runescape-dark-gold) 70%);
+  color: var(--runescape-black);
+}
+
+.button-divider {
+  height: 1px;
+  width: 60%;
+  margin: 1.5rem auto 0;
+  background: linear-gradient(to right, 
+    transparent 0%,
+    var(--runescape-dark-gold) 20%, 
+    var(--runescape-gold) 50%, 
+    var(--runescape-dark-gold) 80%,
+    transparent 100%);
+}
+
+@keyframes cardAppear {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.result-title {
+  color: var(--runescape-gold-light);
+  margin-top: 0;
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-shadow: 
+    -1px -1px 0 #000,  
+     1px -1px 0 #000,
+    -1px  1px 0 #000,
+     1px  1px 0 #000,
+     2px 2px 5px rgba(0, 0, 0, 0.7);
+  font-family: 'Cinzel', serif;
+  position: relative;
+  display: inline-block;
+  animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+  0% {
+    filter: drop-shadow(0 0 2px var(--runescape-gold));
+  }
+  100% {
+    filter: drop-shadow(0 0 6px var(--runescape-gold));
+  }
+}
+
+.result-title:after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(to right, 
+    transparent 0%,
+    var(--runescape-dark-gold) 20%, 
+    var(--runescape-gold) 50%, 
+    var(--runescape-dark-gold) 80%, 
+    transparent 100%);
+  transform: translateX(-50%);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+.chore-name {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin: 1.5rem 0;
+  color: white;
+  text-shadow:
+    -2px -2px 0 #000,  
+     2px -2px 0 #000,
+    -2px  2px 0 #000,
+     2px  2px 0 #000,
+     3px 3px 6px rgba(0, 0, 0, 0.8);
+  font-family: 'Cinzel', serif;
+  letter-spacing: 1px;  background: linear-gradient(to bottom, #fff 0%, var(--text-color) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.chore-details {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.chore-type, .chore-difficulty {
+  padding: 0.5rem 1rem;
+  border: 2px solid var(--runescape-black);
+  font-weight: bold;
+  font-size: 0.9rem;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    0 1px 3px rgba(0, 0, 0, 0.4);
+  position: relative;
+}
+
+.chore-type:before, .chore-difficulty:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.2) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+.type-afk {
+  background-color: var(--afk-color);
+}
+
+.type-gathering {
+  background-color: var(--gathering-color);
+}
+
+.type-boss {
+  background-color: var(--boss-color);
+}
+
+.type-other {
+  background-color: #9C27B0;
+}
+
+.chore-notes {
+  margin-top: 1.5rem;
+  font-style: italic;
+  background-color: var(--chat-box);
+  padding: 1.2rem;
+  line-height: 1.6;
+  border: 1px solid var(--runescape-border);
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+  position: relative;
+  color: #e0d0b0;
+}
+
+.chore-notes:before {
+  content: 'Note:';
+  position: absolute;
+  top: -10px;
+  left: 10px;
+  background-color: var(--runescape-gold);
+  padding: 0 10px;
+  font-size: 0.8rem;
+  color: black;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: 1px solid var(--runescape-black);
+}
+
+.confetti-button {
+  margin-top: 1.5rem;
+  padding: 0.6rem 1.2rem;
+  background: linear-gradient(to bottom, var(--runescape-gold) 0%, var(--runescape-dark-gold) 100%);
+  border: 2px solid var(--runescape-black);
+  border-radius: 0;
+  color: #111;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    0 3px 0 var(--runescape-black),
+    0 4px 5px rgba(0, 0, 0, 0.4);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
+  position: relative;
+  font-family: 'Cinzel', serif;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
+
+.confetti-button:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.2) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+.confetti-button:after {
+  content: '✨';
+  margin-left: 5px;
+}
+
+.confetti-button:hover {
+  background: linear-gradient(to bottom, var(--runescape-gold) 30%, var(--runescape-dark-gold) 100%);
+  transform: translateY(-2px);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    0 5px 0 var(--runescape-black),
+    0 6px 8px rgba(0, 0, 0, 0.4);
+}
+
+.confetti-button:active {
+  transform: translateY(2px);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    0 1px 0 var(--runescape-black),
+    0 2px 3px rgba(0, 0, 0, 0.4);
+}

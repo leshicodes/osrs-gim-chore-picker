@@ -1,0 +1,74 @@
+[
+  {
+    "name": "Fish Monkfish",
+    "type": "afk",
+    "difficulty": "easy",
+    "notes": "Use Piscatoris teleport to get there quickly"
+  },
+  {
+    "name": "Chop Redwood Logs",
+    "type": "afk",
+    "difficulty": "medium",
+    "notes": "Requires 90 Woodcutting and completion of Mourning's End Part II"
+  },
+  {
+    "name": "Mine Amethyst",
+    "type": "afk",
+    "difficulty": "medium",
+    "notes": "Requires 92 Mining to mine"
+  },
+  {
+    "name": "Kill Vorkath",
+    "type": "boss",
+    "difficulty": "hard",
+    "notes": "Bring Ranged gear and Super Antifire potions"
+  },
+  {
+    "name": "Catch Chinchompas",
+    "type": "gathering",
+    "difficulty": "medium",
+    "notes": "Red chinchompas in Feldip Hills or black chinchompas in wilderness"
+  },
+  {
+    "name": "Motherload Mine",
+    "type": "afk",
+    "difficulty": "easy",
+    "notes": "Upper level recommended for efficiency"
+  },
+  {
+    "name": "Make Cannonballs",
+    "type": "afk",
+    "difficulty": "easy",
+    "notes": "Requires Dwarf Cannon quest and steel bars"
+  },
+  {
+    "name": "Cook Karambwan",
+    "type": "afk",
+    "difficulty": "easy",
+    "notes": "One-tick cooking method for faster XP"
+  },
+  {
+    "name": "Farm Herbs",
+    "type": "gathering",
+    "difficulty": "easy",
+    "notes": "Check all herb patches with magic secateurs"
+  },
+  {
+    "name": "Kill Zulrah",
+    "type": "boss",
+    "difficulty": "hard",
+    "notes": "Bring switches for multiple combat styles"
+  },
+  {
+    "name": "Infernal Eels",
+    "type": "afk",
+    "difficulty": "medium",
+    "notes": "Requires 80 Fishing and fire cape"
+  },
+  {
+    "name": "Blast Furnace",
+    "type": "gathering",
+    "difficulty": "medium",
+    "notes": "Great for smithing XP and making bars"
+  }
+]

@@ -1,0 +1,287 @@
+.wheel-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  margin: 2rem auto;
+  width: 100%;
+  max-width: 500px;
+  padding: 2rem;
+  background: var(--runescape-inventory-bg);
+  border: 2px solid var(--runescape-gold);
+  box-shadow: 
+    inset 0 0 30px rgba(0, 0, 0, 0.5),
+    0 5px 15px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+/* OSRS-style container border decorations */
+.wheel-container:before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  border: 1px solid var(--runescape-dark-gold);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* OSRS-style corner decorations */
+.wheel-container:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(135deg, var(--runescape-gold) 0%, transparent 15px),
+    linear-gradient(-135deg, var(--runescape-gold) 0%, transparent 15px),
+    linear-gradient(-45deg, var(--runescape-gold) 0%, transparent 15px),
+    linear-gradient(45deg, var(--runescape-gold) 0%, transparent 15px);
+  background-position: top left, top right, bottom right, bottom left;
+  background-size: 30px 30px;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.wheel {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background-color: var(--runescape-black);
+  overflow: hidden;
+  border: 12px solid var(--runescape-gold);
+  box-shadow: 
+    0 0 0 3px var(--runescape-black),
+    0 0 0 15px var(--runescape-dark-gold), 
+    0 0 0 18px var(--runescape-black),
+    0 10px 30px rgba(0, 0, 0, 0.7);
+  transition: transform 5s cubic-bezier(0.17, 0.67, 0.13, 0.99);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Overlay texture to make it look like worn OSRS item */
+.wheel:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTQyIDc5LjE2MDkyNCwgMjAxNy8wNy8xMy0wMTowNjozOSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTggKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjQ5QTJFMjY1RTQwNDExRThBRUJBQTM4QzU0NThBNDZEIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjQ5QTJFMjY2RTQwNDExRThBRUJBQTM4QzU0NThBNDZEIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NDlBMkUyNjNFNDA0MTFFOEFFQkFBMzhDNTQ1OEE0NkQiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6NDlBMkUyNjRFNDA0MTFFOEFFQkFBMzhDNTQ1OEE0NkQiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz6NJfYBAAACjlBMVEXz8/Pt7e3s7Ozo6Ojx8fHw8PDm5ubq6ury8vL19fXn5+f29vb09PTl5eXu7u7j4+Pi4uL6+vrg4ODh4eH5+fne3t7+/v739/fc3Nzd3d38/Pzb29v9/f3Z2dlmZmbY2Nj4+Pja2trX19f7+/v////T09PU1NTMzMzQ0NDCwsLPz8/Ly8vExMTw8O7Nzc3Kysr6+vjS0tLAwMD5+ffJycnOzs74+Pb29vS+vr69vb37+/nV1dWzs7PIyMi2trb09PK7u7v7+/e8vLzFxcW1tbXDw8O0tLS3t7e6urq/v7+ysrKpqam5ubmurq6oqKi4uLimpqaXl5evr6+lpaWtra2rq6uhoaGfn5+srKyenp6cnJyRkZGUlJSqqqqdnZ2npy+mpqCgoKCOjo6ZmZmjoyykpKSbm5ukpJ+fn5qkpKCWlpaioqKampqwsLCTk5OPj4+xsbGYmJiVlZWdnZednZqNjY2iopiiopiQkJCKioqwsJChoZybm5eYmJSjopiLi4ulpZyNjYnJycLR0cmcnJicnJOLi4ehoZjExLyenpWurqSRkYyenpienpqfn5Z+fn7GxryAgICenpeenpSQkIisrJ+CgoKqqpyIiIibm5OZmZB5eXmlpZatra+IiITFxbypqZ6QkIV3d3fOzsSPj4pzc3N1dXWurrHQ0MSIiH+Pj4V2dnaOjoaWlomHh32JiYOOjoJ8fHyVlYiJiX6KioB6enqWloRvb2/JybqRkYOXl4d0dHSSkoSXl4aYmIZ7e3twcHCampKFhXpubm6JiXhsbGxnZ2dmZmagoIyZmYWFhXRtbW1qamppaWmUlIBycnJxcXFoaGh/f39ra2tfX1+AgHVhYWFiYmJcXFxvb2NeXl5bW1tiYl1xcWZubmFaWlo+56XRAAAAN3RSTlP//////////////////////////////////////////////////////////////////wAq7nU1AAAACXBIWXMAAAsSAAALEgHS3X78AAAEG0lEQVR42uzUTWviQBiAYS1FlFK6UGhN4vySaMSNYFQ8+v//Z+dcBnZhOg6zRbJ5j/OdZj7emXz5V+n6ZVC0PoMgDCuDsHEahsE8arV4hbgMCzdImi1eG5ehnTRYvX5/lGaN1prLYI1GUc+iPPb5BmuENZe+BRbWpGl1P30ebFij9fv1UdRsFqYy+MGSr1GY+qDNgzVug2kw9cquJ0vqvahrUk/jcluapZMUduqXZbksZ1inYdmbRmaK44mLMDvVsUm9VNh0bdqQ2586Y5Ps63h3c3Mzy5JkYbK7vp5tJkkxyn0bRY10c3d/nxiTnOwbY/yiuL6+noGJ20Pbx3Yab77efv+42O8Xi8V+v5ht3p5MT+Sr773c5FkJmvz+dHMBRZZ/jpIizfp8/OZbcZ4XO2hm++3H+8fzxc/19ceP17e3t6fi+fkgHx+znqY9rKn8/vXz9Xqepjq278+LQ3mSVFcQ7g/F5nlzuRBKZmmqA0xODSQez44YdpmP899flwpbwvDcTntp6rjtEHAQGBu9ezlo80PWy0f7egnT/40SSDSZbJdwEPABcOgOgUTOeIBFJ9rLgARIgARIgARIgAT+XCABFN0TLon8GdyHjrcUJBZwDGTQA0iCXxQLOI9xDocHIThuAbdwhDCHGOMOjgVsIc7hQQKcIAQhIYfzEM4+7uCcQxCE+xzR+n8+xVAwvo5tjDaM6zgKDMatcbSNIxzHcXaN3caxHcfYOA7jRDhfjRs7Rji22KlhMsWudYwpdn3HcY4x2GOsTDGOiWOMQ+wax8o4Qhz7+F32u/HW4jSfsR7P2MZrewwgIqnQbNsYY5ZTAtMn0VLIMEZFgaIlRGXhTEpREBmBPCcnVHLO6dCIXAtlJRFQZEboDCPTQiFCCCCllAObEpCRjEwpDJlaGIaTM5KMypF1WjFypCnSCfG0kqNDVBoplWZlVB5qVAoZa1ShBMbKcFkQ0yuQSs3liEqpvAYrRwOWQjvStygrCSVniEkpFUo1KEaOkKXSykxojAwEYxdKwxnO7Wg5ZyL0hKa7lAISIEECJECCBEiABAmQABIkQIIESIAECZAACRIgASRIgAQJkAAJEiABEiRAAvQPBn4CHmzrq0kYBuAwnHaMtetQu9NpN5bpqQfaqO1mWf7/f7V3cUBAIOWrCDz3Rd+7uAMCmQJvwMvzLeB64F5OiEYA+jG8Xi3AW0B2o4AN8FlvoFqASxYRVgrY7NoN+Zb2EgP4JLaBK9cABLDsmw0MPBKzWMX5HgEAx8nYQMc0McaWCvCJfA8TAwM51LmoLezMWwTAv7nNDbTuN0cDzDPvujdwc55bCJnrqZ2F53kQuF+Fow3wbegvwgQAhP6PeXCE5qQBFgAkSMoGoO/75fIE1TpH9QMgZXIAEiRlA6wFCADeSDmj+i3AZZIGMCoXAKH/YwFG5QJgAYJRyQBI3arSAGUn8gEkQIJkaICVJ+LbpykAaTV9+jGAaQCUWYXRSgSAB+Afbvk5uLG0H90AAAAASUVORK5CYII=');
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 1;
+  border-radius: 50%;
+}
+
+.wheel:before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 15%;
+  height: 15%;
+  background: radial-gradient(circle, var(--runescape-gold-light) 0%, var(--runescape-gold) 40%, var(--runescape-dark-gold) 70%, var(--runescape-black) 100%);
+  border-radius: 50%;
+  z-index: 2;
+  border: 3px solid var(--runescape-black);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.wheel-pointer {
+  position: absolute;
+  top: -32px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 60px;
+  background: linear-gradient(to bottom, var(--runescape-gold-light) 0%, var(--runescape-gold) 40%, var(--runescape-dark-gold) 100%);
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  z-index: 10;
+  box-shadow: 
+    0 5px 5px rgba(0, 0, 0, 0.5),
+    inset 0 -5px 10px rgba(0, 0, 0, 0.3);
+  border: 2px solid var(--runescape-black);
+  border-top: none;
+  animation: pointerGlow 2s infinite alternate;
+}
+
+@keyframes pointerGlow {
+  0% {
+    filter: drop-shadow(0 0 2px var(--runescape-gold));
+  }
+  100% {
+    filter: drop-shadow(0 0 8px var(--runescape-gold-light));
+  }
+}
+
+.wheel-segment {
+  position: absolute;
+  top: 0;
+  right: 50%;
+  transform-origin: 100% 100%;
+  height: 50%;
+  overflow: hidden;
+  transform: rotate(0deg) skewY(0deg);
+  border: 2px solid var(--runescape-black);
+  box-shadow: 
+    inset 0 0 15px rgba(0, 0, 0, 0.5),
+    inset 0 0 2px var(--runescape-gold-light);
+  transition: all 0.3s;
+}
+
+/* Add texture pattern to segments */
+.wheel-segment:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAO0lEQVQYlWNkYGBgqK6u/s9AJGBiIFLAasOGDf9xKQjCJgmyBKsJMOtAJgINwoYZSTEBHQPNh9gKGBgYAIE0AxnXj6KCAAAAAElFTkSuQmCC');
+  background-repeat: repeat;
+  opacity: 0.08;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.wheel-segment:hover {
+  filter: brightness(1.3);
+  box-shadow: 
+    inset 0 0 15px rgba(0, 0, 0, 0.5),
+    inset 0 0 8px var(--runescape-gold);
+}
+
+.segment-text {
+  position: absolute;
+  left: -100%;
+  width: 200%;
+  height: 200%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-bottom: 70%;
+  font-weight: bold;
+  color: var(--runescape-gold-light);
+  font-size: 0.8rem;
+  text-shadow: 
+    -1px -1px 0 #000,  
+     1px -1px 0 #000,
+    -1px  1px 0 #000,
+     1px  1px 0 #000,
+     1px 1px 3px rgba(0, 0, 0, 0.9);
+  opacity: 0.9;
+  letter-spacing: 0.5px;
+  font-variant: small-caps;
+  font-family: 'Cinzel', serif;
+  z-index: 2;
+  transform-origin: bottom center;
+}
+
+.spin-button {
+  margin-top: 2rem;
+  padding: 1rem 2rem;
+  font-size: 1.25rem;
+  background: linear-gradient(to bottom, var(--runescape-gold) 0%, var(--runescape-dark-gold) 100%);
+  color: #111;
+  border: 2px solid var(--runescape-black);
+  border-radius: 0;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s;
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    0 4px 0 var(--runescape-brown),
+    0 5px 5px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.2);
+  position: relative;
+  letter-spacing: 1px;
+  font-family: 'Cinzel', serif;
+}
+
+.spin-button:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.2) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+.spin-button:hover:not(:disabled) {
+  background: linear-gradient(to bottom, var(--runescape-gold) 30%, var(--runescape-dark-gold) 100%);
+  transform: translateY(-2px);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    0 6px 0 var(--runescape-brown),
+    0 8px 8px rgba(0, 0, 0, 0.5);
+}
+
+.spin-button:active:not(:disabled) {
+  transform: translateY(2px);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    0 2px 0 var(--runescape-brown),
+    0 3px 3px rgba(0, 0, 0, 0.5);
+}
+
+.spin-button:disabled {
+  background: linear-gradient(to bottom, #999 0%, #666 100%);
+  color: #444;
+  cursor: not-allowed;
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 4px 0 #444,
+    0 5px 5px rgba(0, 0, 0, 0.3);
+}
+
+.spinning {
+  pointer-events: none;
+}
+
+/* Media queries for responsive wheel */
+@media (max-width: 500px) {
+  .wheel {
+    width: 300px;
+    height: 300px;
+    border-width: 8px;
+  }
+  
+  .wheel-container {
+    padding: 1rem;
+  }
+  
+  .segment-text {
+    font-size: 0.7rem;
+  }
+  
+  .wheel-pointer {
+    width: 30px;
+    height: 45px;
+    top: -24px;
+  }
+}
+
+@media (max-width: 350px) {
+  .wheel {
+    width: 250px;
+    height: 250px;
+    border-width: 6px;
+  }
+  
+  .segment-text {
+    font-size: 0.6rem;
+  }
+}

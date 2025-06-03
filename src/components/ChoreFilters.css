@@ -1,0 +1,157 @@
+.filters-container {
+  background-color: var(--runescape-inventory-bg);
+  border: 2px solid var(--runescape-gold);
+  border-radius: 0;
+  padding: 20px;
+  margin-bottom: 20px;
+  position: relative;
+  max-width: 800px;
+  width: 100%;
+  box-shadow: 
+    0 4px 10px rgba(0, 0, 0, 0.3),
+    inset 0 0 15px rgba(0, 0, 0, 0.4);
+}
+
+/* Add texture to the container */
+.filters-container:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAO0lEQVQYlWNkYGBgqK6u/s9AJGBiIFLAasOGDf9xKQjCJgmyBKsJMOtAJgINwoYZSTEBHQPNh9gKGBgYAIE0AxnXj6KCAAAAAElFTkSuQmCC');
+  background-repeat: repeat;
+  opacity: 0.05;
+  pointer-events: none;
+}
+
+/* Add OSRS-style corner decorations */
+.filters-container:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(135deg, var(--runescape-gold) 0%, transparent 10px),
+    linear-gradient(-135deg, var(--runescape-gold) 0%, transparent 10px),
+    linear-gradient(-45deg, var(--runescape-gold) 0%, transparent 10px),
+    linear-gradient(45deg, var(--runescape-gold) 0%, transparent 10px);
+  background-position: top left, top right, bottom right, bottom left;
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.filter-section {
+  margin-bottom: 15px;
+}
+
+.filter-section h3 {
+  color: var(--runescape-gold);
+  text-shadow: 1px 1px 1px var(--runescape-black);
+  margin-bottom: 10px;
+  border-bottom: 1px solid var(--runescape-border);
+  padding-bottom: 5px;
+}
+
+.filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.filter-button {
+  background: linear-gradient(to bottom, var(--runescape-button-top), var(--runescape-button-bottom));
+  border: 1px solid var(--runescape-border);
+  color: var(--runescape-text);
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 0.9em;
+  font-weight: bold;
+  border-radius: 3px;
+  transition: all 0.2s ease;
+}
+
+.filter-button:hover {
+  background: linear-gradient(to bottom, var(--runescape-button-hover-top), var(--runescape-button-hover-bottom));
+}
+
+.filter-active {
+  background: linear-gradient(to bottom, var(--runescape-gold), var(--runescape-gold-dark));
+  color: var(--runescape-black);
+  border-color: var(--runescape-gold-dark);
+}
+
+.filter-type-afk {
+  border-left: 4px solid #4CAF50;
+}
+
+.filter-type-gathering {
+  border-left: 4px solid #2196F3;
+}
+
+.filter-type-boss {
+  border-left: 4px solid #F44336;
+}
+
+.filter-type-easy {
+  border-left: 4px solid #4CAF50;
+}
+
+.filter-type-medium {
+  border-left: 4px solid #FFC107;
+}
+
+.filter-type-hard {
+  border-left: 4px solid #F44336;
+}
+
+.filter-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+  color: var(--runescape-text);
+}
+
+.filter-checkbox input {
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+  accent-color: var(--runescape-gold);
+}
+
+.recent-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.clear-button {
+  background: linear-gradient(to bottom, var(--runescape-red-light), var(--runescape-red-dark));
+  color: white;
+}
+
+.clear-button:hover {
+  background: linear-gradient(to bottom, var(--runescape-red), var(--runescape-red-dark));
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 600px) {
+  .filter-buttons {
+    justify-content: space-between;
+  }
+  
+  .filter-button {
+    flex: 1 0 45%;  /* Two buttons per row on very small screens */
+    text-align: center;
+  }
+}
