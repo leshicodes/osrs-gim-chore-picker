@@ -60,11 +60,21 @@
     0 0 0 3px var(--runescape-black),
     0 0 0 15px var(--runescape-dark-gold), 
     0 0 0 18px var(--runescape-black),
-    0 10px 30px rgba(0, 0, 0, 0.7);
+    0 10px 30px rgba(0, 0, 0, 0.7),
+    /* Add inner shadow for depth */
+    inset 0 0 40px rgba(0, 0, 0, 0.5);
   transition: transform 5s cubic-bezier(0.17, 0.67, 0.13, 0.99);
   display: flex;
   align-items: center;
   justify-content: center;
+  /* Add subtle shine to help with segment visibility */
+  background-image: radial-gradient(
+    circle at center,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0) 70%
+  );
+  /* Add slight filter to improve contrast */
+  filter: contrast(1.05);
 }
 
 /* Overlay texture to make it look like worn OSRS item */
@@ -134,9 +144,12 @@
   transform: rotate(0deg) skewY(0deg);
   border: 2px solid var(--runescape-black);
   box-shadow: 
-    inset 0 0 15px rgba(0, 0, 0, 0.5),
-    inset 0 0 2px var(--runescape-gold-light);
+    inset 0 0 15px rgba(0, 0, 0, 0.6),
+    inset 0 0 3px var(--runescape-gold-light),
+    0 0 2px rgba(0, 0, 0, 0.8);
   transition: all 0.3s;
+  /* Add very slight brightness increase to all segments for improved visibility */
+  filter: brightness(1.1) contrast(1.1);
 }
 
 /* Add texture pattern to segments */
@@ -149,16 +162,24 @@
   left: 0;
   background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAO0lEQVQYlWNkYGBgqK6u/s9AJGBiIFLAasOGDf9xKQjCJgmyBKsJMOtAJgINwoYZSTEBHQPNh9gKGBgYAIE0AxnXj6KCAAAAAElFTkSuQmCC');
   background-repeat: repeat;
-  opacity: 0.08;
+  opacity: 0.12; /* Slightly increased opacity */
   pointer-events: none;
   z-index: 1;
+  /* Add inner highlight effect to segments */
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.1);
+  /* Add slight inner edge highlight */
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .wheel-segment:hover {
-  filter: brightness(1.3);
+  filter: brightness(1.4) contrast(1.2);
   box-shadow: 
     inset 0 0 15px rgba(0, 0, 0, 0.5),
-    inset 0 0 8px var(--runescape-gold);
+    inset 0 0 12px var(--runescape-gold),
+    0 0 8px rgba(230, 185, 50, 0.3);
+  /* Add a very subtle outline when hovering */
+  outline: 1px solid rgba(255, 255, 255, 0.2);
+  z-index: 1;
 }
 
 .segment-text {
@@ -172,20 +193,21 @@
   text-align: center;
   padding-bottom: 70%;
   font-weight: bold;
-  color: var(--runescape-gold-light);
-  font-size: 0.8rem;
+  color: #fff; /* White for maximum contrast */
+  font-size: 0.9rem; /* Slightly larger font size */
   text-shadow: 
     -1px -1px 0 #000,  
      1px -1px 0 #000,
     -1px  1px 0 #000,
      1px  1px 0 #000,
-     1px 1px 3px rgba(0, 0, 0, 0.9);
-  opacity: 0.9;
+     0 0 4px rgba(0, 0, 0, 1), 
+     0 0 6px rgba(0, 0, 0, 0.8); /* Stronger text shadow for better contrast */
   letter-spacing: 0.5px;
   font-variant: small-caps;
   font-family: 'Cinzel', serif;
   z-index: 2;
   transform-origin: bottom center;
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.3)); /* Extra glow effect for visibility */
 }
 
 .spin-button {
@@ -265,6 +287,15 @@
   
   .segment-text {
     font-size: 0.7rem;
+    /* Enhance mobile text visibility */
+    text-shadow: 
+      -1px -1px 0 #000,  
+       1px -1px 0 #000,
+      -1px  1px 0 #000,
+       1px  1px 0 #000,
+       0 0 5px rgba(0, 0, 0, 1),
+       0 0 2px #fff;
+    font-weight: 900; /* Bolder on smaller screens */
   }
   
   .wheel-pointer {
@@ -282,6 +313,11 @@
   }
   
   .segment-text {
-    font-size: 0.6rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.5px;
+    font-weight: 900;
+    /* Even more enhanced visibility for very small screens */
+    -webkit-text-stroke: 0.5px black;
+    padding-bottom: 75% !important; /* Force text higher up in segment */
   }
 }
