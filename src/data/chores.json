@@ -1,21 +1,21 @@
 [
   {
-    "name": "Fish Monkfish",
+    "name": "Fish Sharks",
     "type": "afk",
     "difficulty": "easy",
-    "notes": "Use Piscatoris teleport to get there quickly"
+    "notes": "Get to fishin Willard! Requires 76 Fishing and a harpoon"
   },
   {
-    "name": "Chop Redwood Logs",
+    "name": "Chop Magic or Yew Logs",
     "type": "afk",
-    "difficulty": "medium",
-    "notes": "Requires 90 Woodcutting and completion of Mourning's End Part II"
+    "difficulty": "easy",
+    "notes": "Use a dragon axe for faster chopping"
   },
   {
-    "name": "Mine Amethyst",
+    "name": "Motherlode Mine",
     "type": "afk",
-    "difficulty": "medium",
-    "notes": "Requires 92 Mining to mine"
+    "difficulty": "easy",
+    "notes": "Great for mining XP and collecting ores"
   },
   {
     "name": "Kill Vorkath",
@@ -24,16 +24,10 @@
     "notes": "Bring Ranged gear and Super Antifire potions"
   },
   {
-    "name": "Catch Chinchompas",
-    "type": "gathering",
-    "difficulty": "medium",
-    "notes": "Red chinchompas in Feldip Hills or black chinchompas in wilderness"
-  },
-  {
-    "name": "Motherload Mine",
-    "type": "afk",
-    "difficulty": "easy",
-    "notes": "Upper level recommended for efficiency"
+    "name": "Kill Zulrah",
+    "type": "boss",
+    "difficulty": "hard",
+    "notes": "GET THAT BLOWPIPE GAMER!"
   },
   {
     "name": "Make Cannonballs",
@@ -48,27 +42,28 @@
     "notes": "One-tick cooking method for faster XP"
   },
   {
-    "name": "Farm Herbs",
+    "name": "Herb Run",
     "type": "gathering",
     "difficulty": "easy",
     "notes": "Check all herb patches with magic secateurs"
-  },
-  {
-    "name": "Kill Zulrah",
-    "type": "boss",
-    "difficulty": "hard",
-    "notes": "Bring switches for multiple combat styles"
-  },
-  {
-    "name": "Infernal Eels",
-    "type": "afk",
-    "difficulty": "medium",
-    "notes": "Requires 80 Fishing and fire cape"
   },
   {
     "name": "Blast Furnace",
     "type": "gathering",
     "difficulty": "medium",
     "notes": "Great for smithing XP and making bars"
+  },
+  {
+    "name": "Volcanic Ash",
+    "type": "gathering",
+    "difficulty": "easy",
+    "notes": "Collect ash from the Volcanic Mine for Ultracompost"
+  },
+  {
+    "name": "Gather Herblore Secondaries",
+    "type": "gathering",
+    "difficulty": "easy",
+    "notes": "Mushrooms, Red Spiders' Eggs, Snapegrass, etc."
   }
+
 ]
