@@ -234,12 +234,6 @@
   font-weight: bold;
   margin: 1.5rem 0;
   color: white;
-  text-shadow:
-    -2px -2px 0 #000,  
-     2px -2px 0 #000,
-    -2px  2px 0 #000,
-     2px  2px 0 #000,
-     3px 3px 6px rgba(0, 0, 0, 0.8);
   font-family: 'Cinzel', serif;
   letter-spacing: 1px;  background: linear-gradient(to bottom, #fff 0%, var(--text-color) 100%);
   -webkit-background-clip: text;
