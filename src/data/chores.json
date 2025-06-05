@@ -63,7 +63,18 @@
     "name": "Gather Herblore Secondaries",
     "type": "gathering",
     "difficulty": "easy",
-    "notes": "Mushrooms, Red Spiders' Eggs, Snapegrass, etc."
+    "notes": "Mushrooms, Red Spiders' Eggs, Oh my!"
+  },
+  {
+    "name": "Do a Corrupted Gauntlet",
+    "type": "boss",
+    "difficulty": "hard",
+    "notes": "To the Red Prison with you!"
+  },
+  {
+    "name": "Pyramid Plunder",
+    "type": "gathering",
+    "difficulty": "medium",
+    "notes": "Great for Thieving XP and Sarcophagus loot"
   }
-
 ]
