@@ -8,14 +8,15 @@ interface AddChoreFormProps {
 }
 
 const AddChoreForm: React.FC<AddChoreFormProps> = ({ availableTypes, onAddChore }) => {
-  const [showForm, setShowForm] = useState(false);
-  const [choreName, setChoreName] = useState('');
+  const [showForm, setShowForm] = useState(false);  const [choreName, setChoreName] = useState('');
   const [choreType, setChoreType] = useState<ChoreType>('afk');
   const [choreDifficulty, setChoreDifficulty] = useState<Difficulty>('medium');
   const [choreNotes, setChoreNotes] = useState('');
   const [customType, setCustomType] = useState('');
   const [useCustomType, setUseCustomType] = useState(false);
-  
+  const [useCount, setUseCount] = useState(false);
+  const [minCount, setMinCount] = useState('100');
+  const [maxCount, setMaxCount] = useState('1000');
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -28,17 +29,34 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ availableTypes, onAddChore 
       notes: choreNotes.trim() || undefined
     };
     
+    // Add count property if enabled and values are valid
+    if (useCount) {
+      const min = parseInt(minCount);
+      const max = parseInt(maxCount);
+      
+      // Validate that min and max are valid numbers and min <= max
+      if (!isNaN(min) && !isNaN(max) && min <= max) {
+        newChore.count = { 
+          min, 
+          max
+        };
+        console.log('Added count to new chore:', newChore.count);
+      }
+    }
+    
     onAddChore(newChore);
     resetForm();
   };
-  
-  const resetForm = () => {
+    const resetForm = () => {
     setChoreName('');
     setChoreType('afk');
     setChoreDifficulty('medium');
     setChoreNotes('');
     setCustomType('');
     setUseCustomType(false);
+    setUseCount(false);
+    setMinCount('100');
+    setMaxCount('1000');
   };
   
   const toggleForm = () => {
@@ -126,8 +144,7 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ availableTypes, onAddChore 
               <option value="hard">Hard</option>
             </select>
           </div>
-          
-          <div className="form-group">
+            <div className="form-group">
             <label htmlFor="choreNotes">Notes (optional):</label>
             <textarea
               id="choreNotes"
@@ -137,6 +154,45 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ availableTypes, onAddChore 
               maxLength={200}
             />
           </div>
+          
+          <div className="form-group count-checkbox">
+            <label className="checkbox-label">
+              <input
+                type="checkbox"
+                checked={useCount}
+                onChange={() => setUseCount(!useCount)}
+              />
+              Add a count range (e.g. 100-1000)
+            </label>
+          </div>
+          
+          {useCount && (
+            <div className="form-group count-inputs">
+              <div className="count-range">
+                <div className="count-field">
+                  <label htmlFor="minCount">Minimum:</label>
+                  <input
+                    id="minCount"
+                    type="number"
+                    value={minCount}
+                    onChange={(e) => setMinCount(e.target.value)}
+                    min="1"
+                  />
+                </div>
+                
+                <div className="count-field">
+                  <label htmlFor="maxCount">Maximum:</label>
+                  <input
+                    id="maxCount"
+                    type="number"
+                    value={maxCount}
+                    onChange={(e) => setMaxCount(e.target.value)}
+                    min={parseInt(minCount) || 1}
+                  />
+                </div>
+              </div>
+            </div>
+          )}
           
           <div className="form-buttons">
             <button

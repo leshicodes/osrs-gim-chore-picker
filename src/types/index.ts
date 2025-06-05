@@ -3,6 +3,11 @@ export interface Chore {
   type: string;
   difficulty?: 'easy' | 'medium' | 'hard';
   notes?: string;
+  count?: {
+    min: number;
+    max: number;
+    value?: number; // For holding the randomly generated value
+  };
 }
 
 export type ChoreType = 'afk' | 'gathering' | 'boss' | string;

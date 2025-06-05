@@ -3,13 +3,21 @@
     "name": "Fish Sharks",
     "type": "afk",
     "difficulty": "easy",
-    "notes": "Get to fishin Willard! Requires 76 Fishing and a harpoon"
+    "notes": "Get to fishin Willard! Requires 76 Fishing and a harpoon",
+    "count": {
+      "min": 100,
+      "max": 1000
+    }
   },
   {
     "name": "Chop Magic or Yew Logs",
     "type": "afk",
     "difficulty": "easy",
-    "notes": "Use a dragon axe for faster chopping"
+    "notes": "Use a dragon axe for faster chopping",
+    "count": {
+      "min": 100,
+      "max": 1000
+    }
   },
   {
     "name": "Motherlode Mine",
@@ -21,25 +29,41 @@
     "name": "Kill Vorkath",
     "type": "boss",
     "difficulty": "hard",
-    "notes": "Bring Ranged gear and Super Antifire potions"
+    "notes": "Bring Ranged gear and Super Antifire potions",
+    "count": {
+      "min": 100,
+      "max": 1000
+    }
   },
   {
     "name": "Kill Zulrah",
     "type": "boss",
     "difficulty": "hard",
-    "notes": "GET THAT BLOWPIPE GAMER!"
+    "notes": "GET THAT BLOWPIPE GAMER!",
+    "count": {
+      "min": 100,
+      "max": 1000
+    }
   },
   {
     "name": "Make Cannonballs",
     "type": "afk",
     "difficulty": "easy",
-    "notes": "Requires Dwarf Cannon quest and steel bars"
+    "notes": "Requires Dwarf Cannon quest and steel bars",
+    "count": {
+      "min": 100,
+      "max": 1000
+    }
   },
   {
     "name": "Cook Karambwan",
     "type": "afk",
     "difficulty": "easy",
-    "notes": "One-tick cooking method for faster XP"
+    "notes": "One-tick cooking method for faster XP",
+    "count": {
+      "min": 100,
+      "max": 1000
+    }
   },
   {
     "name": "Herb Run",

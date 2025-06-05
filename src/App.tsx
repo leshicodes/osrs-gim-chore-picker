@@ -30,7 +30,19 @@ function App() {
   const [showFilters, setShowFilters] = useState(false);
 
   const handleSpinEnd = (chore: Chore) => {
-    setSelectedChore(chore);
+    // Create a deep copy of the chore to prevent reference issues
+    const selectedChore = JSON.parse(JSON.stringify(chore));
+    
+    // Generate a random count for the selected chore
+    if (selectedChore.count && typeof selectedChore.count.min === 'number' && typeof selectedChore.count.max === 'number') {
+      const min = Math.ceil(selectedChore.count.min);
+      const max = Math.floor(selectedChore.count.max);
+      selectedChore.count.value = Math.floor(Math.random() * (max - min + 1)) + min;
+      console.log('Generated count value in handleSpinEnd:', selectedChore.count.value);
+    }
+    
+    console.log('Spin ended with chore:', selectedChore);
+    setSelectedChore(selectedChore);
     setShowResult(true);
   };
 

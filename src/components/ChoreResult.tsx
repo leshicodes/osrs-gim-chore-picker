@@ -71,10 +71,14 @@ const ChoreResult: React.FC<ChoreResultProps> = ({ selectedChore, isVisible }) =
       }, 500);
     }
   }, [isVisible, selectedChore]);
-
   if (!isVisible || !selectedChore) {
     return null;
-  }  return (
+  }
+  
+  console.log('Selected Chore:', selectedChore);
+  console.log('Count:', selectedChore.count);
+  
+  return (
     <div className={`chore-result ${isVisible ? 'visible' : ''}`}>
       <div className="result-card" ref={confettiRef}>
         <div className="result-card-corners"><span></span></div>
@@ -96,8 +100,20 @@ const ChoreResult: React.FC<ChoreResultProps> = ({ selectedChore, isVisible }) =
             >
               {selectedChore.difficulty.toUpperCase()}
             </div>
-          )}
-        </div>
+          )}        </div>
+        
+        {/* Display count if available */}
+        {selectedChore.count?.value ? (
+          <div className="chore-count">
+            Count: <span className="count-value">{selectedChore.count.value}</span>
+          </div>
+        ) : selectedChore.count ? (
+          <div className="chore-count">
+            Count: <span className="count-value">
+              {Math.floor(Math.random() * (selectedChore.count.max - selectedChore.count.min + 1)) + selectedChore.count.min}
+            </span>
+          </div>
+        ) : null}
         
         {selectedChore.notes && (
           <div className="chore-notes">

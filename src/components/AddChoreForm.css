@@ -273,3 +273,50 @@
   box-shadow: none;
   transform: none;
 }
+
+/* Styles for count inputs */
+.count-checkbox {
+  margin-bottom: 0.5rem;
+}
+
+.count-inputs {
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+  border: 1px solid var(--runescape-border);
+  margin-top: -10px;
+  margin-bottom: 1rem;
+}
+
+.count-range {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.count-field {
+  flex: 1;
+}
+
+.count-field label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-weight: bold;
+  color: var(--runescape-gold);
+}
+
+.count-field input[type="number"] {
+  width: 100%;
+  padding: 0.5rem;
+  background-color: var(--runescape-black-light);
+  border: 1px solid var(--runescape-border);
+  color: white;
+  font-family: 'Cinzel', serif;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.count-field input[type="number"]:focus {
+  border-color: var(--runescape-gold);
+  outline: none;
+  box-shadow: 0 0 5px var(--runescape-gold);
+}

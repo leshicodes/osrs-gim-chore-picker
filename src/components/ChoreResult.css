@@ -287,6 +287,47 @@
   background-color: #9C27B0;
 }
 
+.chore-count {
+  margin-top: 1.5rem;
+  background-color: var(--chat-box);
+  padding: 1.2rem;
+  border: 2px solid var(--runescape-gold);
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+  position: relative;
+  color: #e0d0b0;
+  text-align: center;
+  font-size: 1.2rem;
+  animation: glow 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5), 0 0 5px var(--runescape-dark-gold);
+  }
+  to {
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5), 0 0 15px var(--runescape-gold);
+  }
+}
+
+.chore-count:before {
+  content: 'Amount:';
+  position: absolute;
+  top: -10px;
+  left: 10px;
+  background-color: var(--runescape-gold);
+  padding: 0 10px;
+  font-size: 0.8rem;
+  color: black;
+  font-weight: bold;
+}
+
+.count-value {
+  color: var(--runescape-gold);
+  font-weight: bold;
+  font-size: 1.8rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
 .chore-notes {
   margin-top: 1.5rem;
   font-style: italic;

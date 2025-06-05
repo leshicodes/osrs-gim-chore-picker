@@ -10,9 +10,7 @@ interface ChoreWheelProps {
 const ChoreWheel: React.FC<ChoreWheelProps> = ({ chores, onSpinEnd }) => {
   const [rotation, setRotation] = useState(0);
   const [isSpinning, setIsSpinning] = useState(false);
-  const wheelRef = useRef<HTMLDivElement>(null);
-
-  const spinWheel = () => {
+  const wheelRef = useRef<HTMLDivElement>(null);  const spinWheel = () => {
     if (isSpinning || chores.length === 0) return;
 
     setIsSpinning(true);

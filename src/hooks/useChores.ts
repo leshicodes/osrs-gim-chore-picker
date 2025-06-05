@@ -71,15 +71,22 @@ export const useChores = () => {
     
     setFilteredChores(result);
   }, [chores, activeFilters, recentChores]);
-
   const getRandomChore = (): Chore | null => {
     if (filteredChores.length === 0) return null;
     const randomIndex = Math.floor(Math.random() * filteredChores.length);
-    const selectedChore = filteredChores[randomIndex];
+    const selectedChore = { ...filteredChores[randomIndex] };
+    
+    // Generate random count if min and max are provided
+    if (selectedChore.count && typeof selectedChore.count.min === 'number' && typeof selectedChore.count.max === 'number') {
+      const min = Math.ceil(selectedChore.count.min);
+      const max = Math.floor(selectedChore.count.max);
+      selectedChore.count.value = Math.floor(Math.random() * (max - min + 1)) + min;
+      console.log('Generated count value:', selectedChore.count.value);
+    }
     
     // Add to recent chores
     if (selectedChore) {
-      const updatedRecentChores = [selectedChore, ...recentChores.slice(0, 4)]; // Keep last 5
+      const updatedRecentChores = [{ ...selectedChore }, ...recentChores.slice(0, 4)]; // Keep last 5
       setRecentChores(updatedRecentChores);
       localStorage.setItem(RECENT_CHORES_KEY, JSON.stringify(updatedRecentChores));
     }
