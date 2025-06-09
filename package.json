@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://leshicodes.github.io/osrs-gim-chore-picker",
+  "homepage": "https://osrs-gim-chores.jjambrose.info",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",

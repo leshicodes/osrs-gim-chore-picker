@@ -14,7 +14,7 @@ A fun, interactive chore wheel app for randomly assigning AFK or low-effort task
 
 ## 🔗 Live Demo
 
-Check out the live app at: [https://leshicodes.github.io/osrs-gim-chore-picker/](https://leshicodes.github.io/osrs-gim-chore-picker/)
+Check out the live app at: [https://osrs-gim-chores.jjambrose.info/](https://osrs-gim-chores.jjambrose.info/)
 
 ## 🚀 Getting Started
 
@@ -68,7 +68,7 @@ This project is configured for GitHub Pages deployment:
 npm run deploy
 ```
 
-This command builds the project and publishes it to the `gh-pages` branch of your repository, making it accessible at https://leshicodes.github.io/osrs-gim-chore-picker/.
+This command builds the project and publishes it to the `gh-pages` branch of your repository, making it accessible at https://osrs-gim-chores.jjambrose.info/.
 
 ## 🛠️ Technologies Used
 
