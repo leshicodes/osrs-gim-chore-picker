@@ -20,7 +20,8 @@ function App() {
     addCustomChore,
     clearRecentChores,
     filters,
-    setFilter
+    setFilter,
+    getRandomChore
   } = useChores();
   
   const [selectedChore, setSelectedChore] = useState<Chore | null>(null);
@@ -29,21 +30,18 @@ function App() {
   const [useOsrsBackground, setUseOsrsBackground] = useState(false);
   const [showFilters, setShowFilters] = useState(false);
 
-  const handleSpinEnd = (chore: Chore) => {
-    // Create a deep copy of the chore to prevent reference issues
-    const selectedChore = JSON.parse(JSON.stringify(chore));
+  // This function is called when the wheel stops spinning
+  // We ignore the chore parameter from the wheel and use getRandomChore instead
+  const handleSpinEnd = () => {
+    // Use the getRandomChore function to get a random chore
+    // which will automatically handle adding to recent chores
+    const randomChore = getRandomChore();
     
-    // Generate a random count for the selected chore
-    if (selectedChore.count && typeof selectedChore.count.min === 'number' && typeof selectedChore.count.max === 'number') {
-      const min = Math.ceil(selectedChore.count.min);
-      const max = Math.floor(selectedChore.count.max);
-      selectedChore.count.value = Math.floor(Math.random() * (max - min + 1)) + min;
-      console.log('Generated count value in handleSpinEnd:', selectedChore.count.value);
+    if (randomChore) {
+      console.log('Spin ended with chore:', randomChore);
+      setSelectedChore(randomChore);
+      setShowResult(true);
     }
-    
-    console.log('Spin ended with chore:', selectedChore);
-    setSelectedChore(selectedChore);
-    setShowResult(true);
   };
 
   const closeResult = () => {
@@ -66,6 +64,7 @@ function App() {
     type: 'types' | 'difficulties' | 'excludeRecent', 
     value: ChoreType[] | Difficulty[] | boolean
   ) => {
+    console.log(`Filter changed: ${type} =`, value);
     setFilter(type, value);
   };
 

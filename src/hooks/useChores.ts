@@ -45,7 +45,6 @@ export const useChores = () => {
       console.error('Error loading chores:', err);
     }
   }, []);
-
   // Apply filters whenever chores or filters change
   useEffect(() => {
     let result = [...chores];
@@ -64,17 +63,26 @@ export const useChores = () => {
     
     // Exclude recently picked chores
     if (activeFilters.excludeRecent && recentChores.length > 0) {
+      console.log('Filtering out recent chores:', recentChores.map(c => c.name));
       result = result.filter(chore => 
         !recentChores.some(recentChore => recentChore.name === chore.name)
       );
+      console.log('After filtering, remaining chores:', result.length);
     }
     
     setFilteredChores(result);
-  }, [chores, activeFilters, recentChores]);
-  const getRandomChore = (): Chore | null => {
-    if (filteredChores.length === 0) return null;
+  }, [chores, activeFilters, recentChores]);  const getRandomChore = (): Chore | null => {
+    console.log('getRandomChore called, filtered chores:', filteredChores.length);
+    console.log('excludeRecent setting:', activeFilters.excludeRecent);
+    
+    if (filteredChores.length === 0) {
+      console.log('No chores available after filtering!');
+      return null;
+    }
+    
     const randomIndex = Math.floor(Math.random() * filteredChores.length);
     const selectedChore = { ...filteredChores[randomIndex] };
+    console.log('Selected chore:', selectedChore.name);
     
     // Generate random count if min and max are provided
     if (selectedChore.count && typeof selectedChore.count.min === 'number' && typeof selectedChore.count.max === 'number') {
@@ -140,7 +148,6 @@ export const useChores = () => {
   const availableDifficulties = [
     ...new Set(chores.filter(chore => chore.difficulty).map(chore => chore.difficulty))
   ] as Difficulty[];
-
   return {
     chores: filteredChores,
     allChores: chores,

@@ -4,20 +4,22 @@ import './ChoreWheel.css';
 
 interface ChoreWheelProps {
   chores: Chore[];
-  onSpinEnd: (chore: Chore) => void;
+  onSpinEnd: () => void;
 }
 
 const ChoreWheel: React.FC<ChoreWheelProps> = ({ chores, onSpinEnd }) => {
   const [rotation, setRotation] = useState(0);
   const [isSpinning, setIsSpinning] = useState(false);
-  const wheelRef = useRef<HTMLDivElement>(null);  const spinWheel = () => {
+  const wheelRef = useRef<HTMLDivElement>(null);  
+  
+  const spinWheel = () => {
     if (isSpinning || chores.length === 0) return;
 
     setIsSpinning(true);
 
-    // Randomly select a chore
+    // Just select a random index for animation purposes only
+    // The actual chore will be selected by getRandomChore in the App component
     const randomIndex = Math.floor(Math.random() * chores.length);
-    const selectedChore = chores[randomIndex];
 
     // Calculate the rotation to land on that chore
     const segmentAngle = 360 / chores.length;
@@ -27,12 +29,10 @@ const ChoreWheel: React.FC<ChoreWheelProps> = ({ chores, onSpinEnd }) => {
     const landingPosition = 360 - segmentRotation + (segmentAngle / 2);
     const newRotation = rotation + (360 * 5) + landingPosition;
 
-    setRotation(newRotation);
-
-    // Wait for animation to complete before calling onSpinEnd
+    setRotation(newRotation);    // Wait for animation to complete before calling onSpinEnd
     setTimeout(() => {
       setIsSpinning(false);
-      onSpinEnd(selectedChore);
+      onSpinEnd();
     }, 5000); // This should match the CSS transition duration
   };
 

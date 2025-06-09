@@ -41,8 +41,8 @@ const ChoreFilters: React.FC<ChoreFiltersProps> = ({
     
     onFilterChange('difficulties', updatedDifficulties);
   };
-
   const handleExcludeRecentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log('Exclude recent checkbox changed:', e.target.checked);
     onFilterChange('excludeRecent', e.target.checked);
   };
 
