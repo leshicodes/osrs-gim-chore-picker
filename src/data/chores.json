@@ -31,8 +31,8 @@
     "difficulty": "hard",
     "notes": "Bring Ranged gear and Super Antifire potions",
     "count": {
-      "min": 100,
-      "max": 1000
+      "min": 5,
+      "max": 50
     }
   },
   {
@@ -41,8 +41,8 @@
     "difficulty": "hard",
     "notes": "GET THAT BLOWPIPE GAMER!",
     "count": {
-      "min": 100,
-      "max": 1000
+      "min": 5,
+      "max": 75
     }
   },
   {
@@ -51,8 +51,8 @@
     "difficulty": "easy",
     "notes": "Requires Dwarf Cannon quest and steel bars",
     "count": {
-      "min": 100,
-      "max": 1000
+      "min": 400,
+      "max": 4000
     }
   },
   {
