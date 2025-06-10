@@ -100,5 +100,11 @@
     "type": "gathering",
     "difficulty": "medium",
     "notes": "Great for Thieving XP and Sarcophagus loot"
+  },
+  {
+    "name": "Make Blood Runes",
+    "type": "gathering",
+    "difficulty": "easy",
+    "notes": "Requires 77 Runecrafting and a Blood Essence"
   }
 ]
