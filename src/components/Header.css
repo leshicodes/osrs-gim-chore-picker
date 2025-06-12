@@ -3,14 +3,16 @@
   padding: 2.5rem 1rem 2rem;
   background-image: linear-gradient(to bottom, 
     var(--runescape-brown) 0%, 
-    var(--background-secondary) 60%,
-    var(--runescape-brown-dark) 100%);
+    var(--runescape-brown-dark) 65%,
+    var(--runescape-black) 100%);
   color: var(--text-color);
-  border-bottom: 4px solid var(--runescape-dark-gold);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
+  border-bottom: 8px solid var(--runescape-dark-gold);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.8);
   position: relative;
   overflow: hidden;
   margin-bottom: 1.5rem;
+  border-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='75' height='75'%3E%3Cpath fill='%23c8a75a' d='M0 0h75v75H0z'/%3E%3Cpath fill='%238d6e41' d='M75 0v75H0V0h75zM7 7v61h61V7H7z'/%3E%3Cpath fill='%238d6e41' d='M15 15v45h45V15H15zm7 7h31v31H22V22z'/%3E%3Cpath fill='%238d6e41' d='M52.5 17.5v40h-40v-40h40m1-1h-42v42h42v-42z'/%3E%3C/svg%3E") 
+  15;
 }
 
 /* Add OSRS-style header texture overlay */
@@ -21,7 +23,8 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 20.5V18H0v-2h20v-2H0v-2h20v-2H0V8h20V6H0V4h20V2H0V0h22v20h2V0h2v20h2V0h2v20h2V0h2v20h2V0h2v20h2v2H20v-1.5zM0 20h2v20H0V20zm4 0h2v20H4V20zm4 0h2v20H8V20zm4 0h2v20h-2V20zm4 0h2v20h-2V20zm4 0h2v20h-2V20zm4 0h2v20h-2V20zm4 0h2v20h-2V20zm4 0h2v20h-2V20zm4 0h2v20h-2V20z' fill='%23594a33' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c8a75a' fill-opacity='0.15'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23634e2b' fill-opacity='0.10'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   pointer-events: none;
 }
 
@@ -94,8 +97,12 @@
   font-size: 3.8rem;
   font-weight: 800;
   color: var(--runescape-gold);
+  font-family: 'Cinzel', serif;
+  text-transform: uppercase;
+  animation: goldPulse 3s ease-in-out infinite;
+  -webkit-text-stroke: 1px black;
   text-shadow: 
-    -2px -2px 0 #000,  
+    -2px -2px 0 #000,
      2px -2px 0 #000,
     -2px  2px 0 #000,
      2px  2px 0 #000,
@@ -123,6 +130,9 @@
   letter-spacing: 3px;
   transform: translateY(-5px);
   margin-top: -10px;
+  font-family: 'Cinzel', serif;
+  position: relative;
+  display: inline-block;
 }
 
 .app-subtitle {

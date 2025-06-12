@@ -85,7 +85,7 @@ const ChoreResult: React.FC<ChoreResultProps> = ({ selectedChore, isVisible }) =
         
         <button className="close-button" onClick={() => document.querySelector('.backdrop')?.dispatchEvent(new MouseEvent('click', { bubbles: true }))}>×</button>
         
-        <h2 className="result-title">Your Chore</h2>
+        <h2 className="result-title">Your Quest</h2>
         <div className="chore-name">{selectedChore.name}</div>
         
         <div className="chore-details">

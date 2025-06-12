@@ -5,14 +5,32 @@
   position: relative;
   margin: 2rem auto;
   width: 100%;
-  max-width: 500px;
-  padding: 2rem;
-  background: var(--runescape-inventory-bg);
-  border: 2px solid var(--runescape-gold);
+  max-width: 400px;
+  padding: 2rem 1.5rem 1.5rem 1.5rem;
+  background-color: #211b14;
+  border: 3px solid var(--runescape-dark-gold);
   box-shadow: 
+    0 0 0 1px #000,
+    inset 0 0 20px rgba(0, 0, 0, 0.5),
+    0 5px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 2px;
+  /* Add title bar styling */
+  padding-top: 20px;
+}
+
+/* Container animation during spinning */
+.wheel-container.container-spinning {
+  box-shadow: 
+    0 0 0 2px #000,
     inset 0 0 30px rgba(0, 0, 0, 0.5),
-    0 5px 15px rgba(0, 0, 0, 0.3);
-  position: relative;
+    0 5px 15px rgba(0, 0, 0, 0.5),
+    /* Add glowing effect during spin */
+    0 0 20px rgba(230, 185, 50, 0.25);
+  border-color: var(--runescape-gold);
+}
+
+.wheel-container.container-spinning .wheel-container-corner-decorations {
+  opacity: 0.8;
 }
 
 /* OSRS-style container border decorations */
@@ -28,9 +46,8 @@
   pointer-events: none;
 }
 
-/* OSRS-style corner decorations */
-.wheel-container:after {
-  content: '';
+/* OSRS-style corner decorations element */
+.wheel-container-corner-decorations {
   position: absolute;
   top: 0;
   left: 0;
@@ -45,26 +62,105 @@
   background-size: 30px 30px;
   background-repeat: no-repeat;
   pointer-events: none;
-  opacity: 0.6;
+  opacity: 0.8;
+  z-index: 1;
 }
+
+/* OSRS-style title bar */
+.wheel-container-title {
+  content: 'Quest Wheel';
+  position: absolute;
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: 1rem;
+  text-transform: uppercase;
+  color: var(--runescape-gold);
+  text-shadow: 
+    -1px -1px 0 #000,  
+     1px -1px 0 #000,
+    -1px  1px 0 #000,
+     1px  1px 0 #000;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 20px;
+  background: linear-gradient(to right, 
+    #2e2417 0%, 
+    #3c2e1b 15%, 
+    #4b3621 50%,
+    #3c2e1b 85%, 
+    #2e2417 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid var(--runescape-gold);
+  z-index: 5;
+  letter-spacing: 1px;
+  pointer-events: none;
+  /* Add subtle glow effect like OSRS interfaces */
+  animation: titleBarGlow 3s infinite alternate ease-in-out;
+}
+
+/* Style for the OSRS-style runes in the title */
+.title-rune {
+  font-size: 0.8rem;
+  margin: 0 6px;
+  opacity: 0.9;
+  color: var(--runescape-gold-light);
+  animation: runeGlow 2s infinite alternate ease-in-out;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+@keyframes runeGlow {
+  0% {
+    transform: scale(1) rotate(0deg);
+    filter: brightness(1);
+  }
+  100% {
+    transform: scale(1.2) rotate(15deg);
+    filter: brightness(1.5);
+  }
+}
+
+@keyframes titleBarGlow {
+  0% {
+    text-shadow: 
+      -1px -1px 0 #000,  
+       1px -1px 0 #000,
+      -1px  1px 0 #000,
+       1px  1px 0 #000;
+  }
+  100% {
+    text-shadow: 
+      -1px -1px 0 #000,  
+       1px -1px 0 #000,
+      -1px  1px 0 #000,
+       1px  1px 0 #000,
+       0 0 5px var(--runescape-gold);
+  }
+}
+
+/* We're using the wheel-container-corner-decorations element for decorations
+   so we completely remove this pseudo-element to prevent any styling conflicts */
 
 .wheel {
   position: relative;
-  width: 400px;
-  height: 400px;
+  width: 300px;
+  height: 300px;
   border-radius: 50%;
   background-color: var(--runescape-black);
   overflow: hidden;
-  border: 12px solid var(--runescape-gold);
+  border: 8px solid var(--runescape-gold);
   box-shadow: 
-    0 0 0 3px var(--runescape-black),
-    0 0 0 15px var(--runescape-dark-gold), 
-    0 0 0 18px var(--runescape-black),
+    0 0 0 2px var(--runescape-black),
+    0 0 0 10px var(--runescape-dark-gold), 
+    0 0 0 12px var(--runescape-black),
     0 10px 30px rgba(0, 0, 0, 0.7),
     /* Add inner shadow for depth */
     inset 0 0 40px rgba(0, 0, 0, 0.5);
-  transition: transform 5s cubic-bezier(0.17, 0.67, 0.13, 0.99);
-  display: flex;
+  /* Use only transform in the transition to avoid issues */
+  transition: transform 5s cubic-bezier(0.17, 0.67, 0.13, 0.99);  display: flex;
   align-items: center;
   justify-content: center;
   /* Add subtle shine to help with segment visibility */
@@ -73,8 +169,8 @@
     rgba(255, 255, 255, 0.05) 0%,
     rgba(255, 255, 255, 0) 70%
   );
-  /* Add slight filter to improve contrast */
-  filter: contrast(1.05);
+  transform-origin: center center;
+  will-change: transform; /* Performance hint for smooth animations */
 }
 
 /* Overlay texture to make it look like worn OSRS item */
@@ -92,28 +188,58 @@
   border-radius: 50%;
 }
 
+@keyframes pointerGlow {
+  0% {
+    filter: drop-shadow(0 0 2px var(--runescape-gold));
+  }
+  100% {
+    filter: drop-shadow(0 0 8px var(--runescape-gold-light));
+  }
+}
+
 .wheel:before {
   content: '';
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 15%;
-  height: 15%;
+  width: 18%;
+  height: 18%;
   background: radial-gradient(circle, var(--runescape-gold-light) 0%, var(--runescape-gold) 40%, var(--runescape-dark-gold) 70%, var(--runescape-black) 100%);
   border-radius: 50%;
   z-index: 2;
   border: 3px solid var(--runescape-black);
-  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 
+    inset 0 0 10px rgba(0, 0, 0, 0.5),
+    0 0 15px rgba(230, 185, 50, 0.3);
+  /* Add OSRS styled emblem design */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Cpath fill='%23211c11' d='M20 5L17 10L13 8L12 13L8 12L9 17L5 18L8 22L5 26L9 27L8 32L12 31L13 36L17 34L20 39L23 34L27 36L28 31L32 32L31 27L35 26L32 22L35 18L31 17L32 12L28 13L27 8L23 10z' opacity='0.5'/%3E%3C/svg%3E");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 80% 80%;  /* Add a simpler glow animation */
+  animation: simpleGlow 3s infinite alternate ease-in-out;
+}
+
+@keyframes simpleGlow {
+  0% {
+    box-shadow: 
+      inset 0 0 10px rgba(0, 0, 0, 0.5),
+      0 0 15px rgba(230, 185, 50, 0.3);
+  }
+  100% {
+    box-shadow: 
+      inset 0 0 10px rgba(0, 0, 0, 0.5),
+      0 0 20px rgba(230, 185, 50, 0.5);
+  }
 }
 
 .wheel-pointer {
   position: absolute;
-  top: -32px;
+  top: -20px; /* Position it just above the wheel as seen in the screenshot */
   left: 50%;
   transform: translateX(-50%);
-  width: 40px;
-  height: 60px;
+  width: 30px;
+  height: 40px;
   background: linear-gradient(to bottom, var(--runescape-gold-light) 0%, var(--runescape-gold) 40%, var(--runescape-dark-gold) 100%);
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
   z-index: 10;
@@ -121,8 +247,24 @@
     0 5px 5px rgba(0, 0, 0, 0.5),
     inset 0 -5px 10px rgba(0, 0, 0, 0.3);
   border: 2px solid var(--runescape-black);
-  border-top: none;
   animation: pointerGlow 2s infinite alternate;
+  border-top: none;
+}
+
+/* Add decorative rune symbol to pointer */
+.wheel-pointer:before {
+  content: '⚜';
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--runescape-black);
+  font-size: 14px;
+  line-height: 1;
+  z-index: 11;
+  text-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
+  opacity: 0.7;
+  font-weight: bold;
 }
 
 @keyframes pointerGlow {
@@ -134,6 +276,27 @@
   }
 }
 
+/* Enhanced animation for pointer during spin */
+@keyframes pointerGlowSpin {
+  0% {
+    filter: drop-shadow(0 0 5px var(--runescape-gold));
+    transform: translateX(-50%) scale(1);
+  }
+  50% {
+    filter: drop-shadow(0 0 12px var(--runescape-gold-light));
+    transform: translateX(-50%) scale(1.1);
+  }
+  100% {
+    filter: drop-shadow(0 0 5px var(--runescape-gold));
+    transform: translateX(-50%) scale(1);
+  }
+}
+
+/* Apply the animation to the pointer during spin */
+.container-spinning .wheel-pointer {
+  animation: pointerGlowSpin 0.5s infinite alternate;
+}
+
 .wheel-segment {
   position: absolute;
   top: 0;
@@ -142,14 +305,10 @@
   height: 50%;
   overflow: hidden;
   transform: rotate(0deg) skewY(0deg);
-  border: 2px solid var(--runescape-black);
-  box-shadow: 
-    inset 0 0 15px rgba(0, 0, 0, 0.6),
-    inset 0 0 3px var(--runescape-gold-light),
-    0 0 2px rgba(0, 0, 0, 0.8);
-  transition: all 0.3s;
-  /* Add very slight brightness increase to all segments for improved visibility */
-  filter: brightness(1.1) contrast(1.1);
+  border: 1px solid var(--runescape-black);
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
+  transition: none; /* Remove transition to prevent any spinning issues */
+  /* No filters to ensure proper rendering */
 }
 
 /* Add texture pattern to segments */
@@ -180,6 +339,13 @@
   /* Add a very subtle outline when hovering */
   outline: 1px solid rgba(255, 255, 255, 0.2);
   z-index: 1;
+  /* Add transition for OSRS-style tooltips */
+  transform: scale(1.02);
+  transition: all 0.2s ease-in-out;
+}
+
+.wheel-segment:hover .segment-text {
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.7));
 }
 
 .segment-text {
@@ -191,64 +357,120 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding-bottom: 70%;
+  padding-bottom: 60%;
   font-weight: bold;
-  color: #fff; /* White for maximum contrast */
-  font-size: 0.9rem; /* Slightly larger font size */
+  color: #fff;
+  font-size: 0.8rem;
   text-shadow: 
     -1px -1px 0 #000,  
      1px -1px 0 #000,
     -1px  1px 0 #000,
-     1px  1px 0 #000,
-     0 0 4px rgba(0, 0, 0, 1), 
-     0 0 6px rgba(0, 0, 0, 0.8); /* Stronger text shadow for better contrast */
+     1px  1px 0 #000;
   letter-spacing: 0.5px;
   font-variant: small-caps;
   font-family: 'Cinzel', serif;
   z-index: 2;
   transform-origin: bottom center;
-  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.3)); /* Extra glow effect for visibility */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.segment-type-icon {
+  display: inline-block;
+  margin-bottom: 3px;
+  font-size: 1.1em;
+  opacity: 0.95;
+  text-shadow: 0 0 4px rgba(0, 0, 0, 1);
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.4));
+  /* Add slight glow effect for OSRS-style emphasis */
+  animation: iconPulse 2s infinite alternate ease-in-out;
+}
+
+@keyframes iconPulse {
+  0% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.3));
+  }
+  100% {
+    transform: scale(1.15);
+    filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.5));
+  }
 }
 
 .spin-button {
-  margin-top: 2rem;
-  padding: 1rem 2rem;
-  font-size: 1.25rem;
+  margin-top: 1.5rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
   background: linear-gradient(to bottom, var(--runescape-gold) 0%, var(--runescape-dark-gold) 100%);
   color: #111;
   border: 2px solid var(--runescape-black);
+  outline: none;
   border-radius: 0;
   cursor: pointer;
   font-weight: bold;
-  transition: all 0.3s;
+  transition: all 0.2s;
   box-shadow: 
-    inset 0 1px 0 rgba(255, 255, 255, 0.4),
-    0 4px 0 var(--runescape-brown),
-    0 5px 5px rgba(0, 0, 0, 0.5);
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    0 3px 0 var(--runescape-brown),
+    0 4px 4px rgba(0, 0, 0, 0.3);
   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.2);
-  position: relative;
-  letter-spacing: 1px;
   font-family: 'Cinzel', serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  min-width: 240px;
+  z-index: 1;
+}
+
+/* OSRS-style scrollwork decoration on the sides */
+.spin-button:before, 
+.spin-button:after {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 80%;
+  top: 10%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.8;
+  transition: all 0.3s;
 }
 
 .spin-button:before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 50%;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.2) 0%, transparent 100%);
-  pointer-events: none;
+  left: -15px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='80' viewBox='0 0 20 80'%3E%3Cpath fill='%23c8a75a' d='M0,0 C5,0 10,10 10,20 C10,30 5,40 10,50 C15,60 20,70 20,80 L0,80 L0,0 Z'/%3E%3C/svg%3E");
+}
+
+.spin-button:after {
+  right: -15px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='80' viewBox='0 0 20 80'%3E%3Cpath fill='%23c8a75a' d='M20,0 C15,0 10,10 10,20 C10,30 15,40 10,50 C5,60 0,70 0,80 L20,80 L20,0 Z'/%3E%3C/svg%3E");
+}
+
+/* Button texture overlay */
+.spin-button span {
+  position: relative;
+  z-index: 2;
 }
 
 .spin-button:hover:not(:disabled) {
-  background: linear-gradient(to bottom, var(--runescape-gold) 30%, var(--runescape-dark-gold) 100%);
-  transform: translateY(-2px);
+  background: linear-gradient(to bottom, var(--runescape-gold-light) 30%, var(--runescape-gold) 100%);
+  transform: translateY(-2px) scale(1.03);
   box-shadow: 
-    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
     0 6px 0 var(--runescape-brown),
-    0 8px 8px rgba(0, 0, 0, 0.5);
+    0 8px 15px rgba(0, 0, 0, 0.6),
+    0 0 15px rgba(230, 185, 50, 0.4);
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+  outline: 2px solid var(--runescape-gold-light);
+}
+
+.spin-button:hover:not(:disabled):before,
+.spin-button:hover:not(:disabled):after {
+  opacity: 1;
+  filter: brightness(1.3);
 }
 
 .spin-button:active:not(:disabled) {
@@ -257,6 +479,7 @@
     inset 0 1px 0 rgba(255, 255, 255, 0.4),
     0 2px 0 var(--runescape-brown),
     0 3px 3px rgba(0, 0, 0, 0.5);
+  outline: 1px solid var(--runescape-dark-gold);
 }
 
 .spin-button:disabled {
@@ -267,10 +490,70 @@
     inset 0 1px 0 rgba(255, 255, 255, 0.2),
     0 4px 0 #444,
     0 5px 5px rgba(0, 0, 0, 0.3);
+  outline: none;
+}
+
+/* Add game-like button texture */
+.spin-button::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAO0lEQVQYlWNkYGBgqK6u/s9AJGBiIFLAasOGDf9xKQjCJgmyBKsJMOtAJgINwoYZSTEBHQPNh9gKGBgYAIE0AxnXj6KCAAAAAElFTkSuQmCC');
+  opacity: 0.08;
+  z-index: -1;
+  pointer-events: none;
 }
 
 .spinning {
   pointer-events: none;
+}
+
+/* Sound control buttons */
+.sound-controls {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  display: flex;
+  gap: 5px;
+  z-index: 10;
+  height: 24px; /* Match title bar height */
+}
+
+.sound-button {
+  background: linear-gradient(to bottom, var(--runescape-brown-light) 0%, var(--runescape-brown-dark) 100%);
+  border: 1px solid var(--runescape-gold);
+  color: var(--runescape-gold-light);
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 1px 2px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+.sound-button:hover {
+  background: linear-gradient(to bottom, var(--runescape-brown) 0%, var(--runescape-brown-dark) 100%);
+  border-color: var(--runescape-gold-light);
+  filter: brightness(1.3);
+  transform: translateY(-1px);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 2px 3px rgba(0, 0, 0, 0.4);
+}
+
+.sound-button:active {
+  transform: scale(0.95);
 }
 
 /* Media queries for responsive wheel */
@@ -283,6 +566,7 @@
   
   .wheel-container {
     padding: 1rem;
+    padding-top: 35px;  /* Maintain space for the title bar */
   }
   
   .segment-text {
@@ -297,11 +581,48 @@
        0 0 2px #fff;
     font-weight: 900; /* Bolder on smaller screens */
   }
-  
-  .wheel-pointer {
+    .wheel-pointer {
     width: 30px;
     height: 45px;
-    top: -24px;
+    top: calc(-6% - 5px); /* Proportional positioning for smaller screens */
+  }
+  
+  .segment-type-icon {
+    font-size: 0.8em;
+    margin-bottom: 2px;
+  }
+  
+  .spin-button {
+    min-width: unset;
+    width: 90%;
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+  }
+  
+  .spin-button:before, 
+  .spin-button:after {
+    width: 10px;
+    height: 70%;
+    top: 15%;
+  }
+  
+  .spin-button:before {
+    left: -10px;
+  }
+  
+  .spin-button:after {
+    right: -10px;
+  }
+
+  .sound-controls {
+    top: 6px;
+    right: 6px;
+  }
+  
+  .sound-button {
+    width: 24px;
+    height: 24px;
+    font-size: 12px;
   }
 }
 
@@ -312,6 +633,12 @@
     border-width: 6px;
   }
   
+  .wheel-pointer {
+    width: 24px;
+    height: 36px;
+    top: calc(-6% - 4px); /* Further adjust for very small screens */
+  }
+  
   .segment-text {
     font-size: 0.65rem;
     letter-spacing: 0.5px;
@@ -320,4 +647,101 @@
     -webkit-text-stroke: 0.5px black;
     padding-bottom: 75% !important; /* Force text higher up in segment */
   }
+  
+  .segment-type-icon {
+    font-size: 0.7em;
+  }
+  
+  .spin-button {
+    font-size: 0.9rem;
+    padding: 0.7rem 1rem;
+  }
+  
+  /* Make the wheel center emblem smaller on very small screens */
+  .wheel:before {
+    width: 16%;
+    height: 16%;
+  }
+    /* Adjust wheel-container title for very small screens */
+  .wheel-container-title {
+    font-size: 0.85rem;
+    height: 22px;
+  }
+  
+  .title-rune {
+    font-size: 0.7rem;
+    margin: 0 4px;
+  }
+}
+
+/* Add OSRS-style glow animations */
+@keyframes osrsGlow {
+  0% { 
+    filter: drop-shadow(0 0 3px rgba(230, 185, 50, 0.3));
+    transform: scale(1);
+  }
+  50% { 
+    filter: drop-shadow(0 0 8px rgba(230, 185, 50, 0.5));
+    transform: scale(1.02);
+  }
+  100% { 
+    filter: drop-shadow(0 0 3px rgba(230, 185, 50, 0.3));
+    transform: scale(1);
+  }
+}
+
+/* Add subtle rotation and glow to make wheel feel alive like OSRS magical items */
+@keyframes subtleRotationAndGlow {
+  0% { 
+    transform: rotate(0deg); 
+    filter: drop-shadow(0 0 0px rgba(200, 167, 90, 0.1));
+  }
+  25% { 
+    transform: rotate(0.5deg); 
+    filter: drop-shadow(0 0 5px rgba(200, 167, 90, 0.2));
+  }
+  50% {
+    transform: rotate(0.25deg);
+    filter: drop-shadow(0 0 8px rgba(200, 167, 90, 0.3));
+  }
+  75% { 
+    transform: rotate(-0.5deg); 
+    filter: drop-shadow(0 0 5px rgba(200, 167, 90, 0.2));
+  }
+  100% { 
+    transform: rotate(0deg); 
+    filter: drop-shadow(0 0 0px rgba(200, 167, 90, 0.1));
+  }
+}
+
+/* Apply glow animation to spin button */
+.spin-button:not(:disabled) {
+  animation: osrsGlow 3s infinite ease-in-out;
+}
+
+/* OSRS-style particle animations */
+@keyframes osrsParticle {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--x), var(--y)) scale(0);
+    opacity: 0;
+  }
+}
+
+/* Apply special glow effect during spinning - simplified for better performance */
+.wheel.spinning {
+  box-shadow: 
+    0 0 0 2px var(--runescape-black),
+    0 0 0 10px var(--runescape-dark-gold), 
+    0 0 0 12px var(--runescape-black),
+    0 10px 30px rgba(0, 0, 0, 0.7),
+    inset 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Simplify animations during spin for better performance */
+.wheel.spinning:before {
+  background: radial-gradient(circle, var(--runescape-gold-light) 0%, var(--runescape-gold) 40%, var(--runescape-dark-gold) 70%, var(--runescape-black) 100%);
 }
