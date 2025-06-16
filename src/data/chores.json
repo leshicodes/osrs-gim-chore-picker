@@ -106,5 +106,11 @@
     "type": "gathering",
     "difficulty": "easy",
     "notes": "Requires 77 Runecrafting and a Blood Essence"
+  },
+  {
+    "name": "Hunt Herbivore",
+    "type": "gathering",
+    "difficulty": "easy",
+    "notes": "POH > Regen Stamina > Fossil Island > Collect > Repeat"
   }
 ]
